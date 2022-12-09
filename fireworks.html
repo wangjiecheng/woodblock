@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="Description" content="joke">
+<meta name="Keywords" content="joke">
+<title>flowers-WindyDay</title>
+<meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<script>
+(function (win,doc){
+    if (!win.addEventListener) return;
+	var html=document.documentElement;
+	function setFont()
+	{
+		var cliWidth=html.clientWidth;
+		html.style.fontSize=100*(cliWidth/750)+'px';
+	}
+	win.addEventListener('resize',setFont,false);
+	setFont();
+})(window,document);
+</script>
+<style>
+*{margin: 0;padding: 0;-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;}
+.clearfix:after {content:"."; display:block; height:0; clear:both; visibility:hidden}
+.clearfix{*zoom:1}
+ul{list-style-type:none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block; }
+table{border-collapse:collapse;border-spacing:0}
+audio,canvas,video { display: inline-block;*display: inline;*zoom: 1;}
+fieldset,img{border:0}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}
+ol,ul{list-style:none}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+q:before,q:after{content:''}
+abbr,acronym{border:0;font-variant:normal}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}
+input,textarea,select{*font-size:100%}
+img{border:0; vertical-align:top;}
+body,html { width: 100%; height: 100%;}
+body{ font-size:24px;font-family:"Microsoft yahei"; margin:0; width:100%; height:100%; background-color: #000; overflow: hidden;}
+a { -webkit-tap-highlight-color:rgba(0,0,0,0); text-decoration:none;}
+.fl_left { float:left;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}
+input,textarea,select{*font-size:100%}
+/*reset*/
+.box { width: 7.5rem; height: auto; padding: 0.2rem 0 0.4rem 0;}
+.box_input { width: 100%; height: 3rem; position: absolute; left: 0; top: 50%; margin-top: -1.5rem; text-align: center;}
+.box_input p { color: #fff;}
+.box_input input { width: 5rem; height: 0.8rem; margin: 0.3rem auto 0; outline: none; padding: 0 0.2rem;}
+.box_input a { display: block; margin: 0.2rem auto 0; width: 2rem; height: 0.6rem; line-height: 0.6rem; border-radius: 0.6rem; background-color: red; font-size: 0.24rem; text-align: center; color: #fff;}
+.fireworks {position:absolute; pointer-events:none; width: 100%; height: 100%; left: 0; top: 0; opacity: 0;}
+</style>
+</head>
+<div class="box" id="wrap">
+	<div class="box_input">
+		<p>秘籍：Show me the flowers</p>
+		<input placeholder="此处输入秘籍" id="cheats" name="cheats" type="text"/>
+		<a href="javascript:void(0);" title="使用秘籍">使用秘籍</a>
+	</div>
+	<div class="fireworks" id="fireworks">
+		<canvas id="canvas"></canvas>
+	</div>
+</div>
+<body>
+<script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<script src="js/howler.min.js"></script>
+<script src="js/fireworks.js"></script>
+<script>
+var music = new Howl({
+	src: 'images/fireworks.mp3',
+	loop: true
+});
+$(function(){
+	$('.box_input a').click(function(){
+		var cheats = $('#cheats').val();
+		console.log(cheats);
+		if(cheats=="Show me the flowers"){
+			$('.box_input').hide();
+			$('.fireworks').css("opacity","1");
+			music.play();
+		}else{
+			alert('请输入正确秘籍！')
+		}
+	})
+});
+</script>
+</body>
+</html>
