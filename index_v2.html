@@ -61,23 +61,46 @@ html,body { height: 100%; overflow: hidden;}
    0%{ transform: translateY(0); opacity: 1;}
    100%{ transform: translateY(-80px); opacity: 0;}
 }
+.add { width: 3.5rem; text-align: center; color: #fff; font-size: .3rem; line-height: .5rem; position: absolute; z-index: 6; left: 50%; top: 50%; margin: -3rem 0 0 -1.75rem;}
 </style>
 </head>
 <div class="wrap" id="wrap">
+	<div class="add">
+		<p>每人初始功德值1万</p>
+		<p>今日功德累计：<span id="today">-</span></p>
+		<p>功德累计：<span id="all">-</span></p>
+	</div>
 	<div class="text"></div>
 	<div class="woodblock"></div>
 </div>
 <body>
 <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
 <script src="js/howler.min.js"></script>
+<script src="js/cookie.js"></script>
 <script>
 var music = new Howl({src: 'images/music.mp3'});
 $(function(){
 	var textCode = '<p>功德+1</p>';
+	var todayNum = 0;
+	var allNum = 10000;
+	if($.fn.cookie('todayNum') != null){
+		todayNum = $.fn.cookie('todayNum');
+		$('#today').text($.fn.cookie('todayNum'));
+	}
+	if($.fn.cookie('allNum') != null){
+		allNum = $.fn.cookie('allNum');
+		$('#all').text($.fn.cookie('allNum'));
+	}
 	$('.woodblock').tap(function(){
 		music.play();
+		todayNum++;
+		allNum++;
 		$('.text').append(textCode);
-	});
+		$.fn.cookie('todayNum', todayNum,{expires: 1});
+		$.fn.cookie('allNum', allNum,{expires: 365});
+		$('#today').text($.fn.cookie('todayNum'));
+		$('#all').text($.fn.cookie('allNum'));
+	});	
 });
 </script>
 </body>
